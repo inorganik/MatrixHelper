@@ -1,6 +1,5 @@
 //
 //  MatrixHelper.swift
-//  Ghost Selfie
 //
 //  Created by Jamie Perkins on 9/14/17.
 //  Copyright © 2017 Inorganik Produce, Inc. All rights reserved.
