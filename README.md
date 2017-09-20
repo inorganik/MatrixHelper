@@ -37,5 +37,8 @@ You can move it up or down by x degrees:
 ```swift
 let moveDown = MatrixHelper.translateMatrixFromHorizon(degrees: -10.0, matrix: transform)
 ```
+**Note:** If you are using an `ARWorldTrackingConfiguration()` with `.gravityAndHeading`, facing toward the north half of the compass, degrees up or down have the opposite effect:
+- north half of compass: negative degrees are up, positive down
+- south half of compass: negative degrees are down, positive up
 
 Enjoy!

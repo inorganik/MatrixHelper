@@ -10,13 +10,6 @@ import GLKit
 
 struct MatrixHelper {
     
-    static func radiansToDegrees(_ radians: Float) -> Float {
-        return radians * (180.0 / Float.pi)
-    }
-    static func degreesToRadians(_ degrees: Float) -> Float {
-        return degrees * (Float.pi / 180.0)
-    }
-    
     // GLKMatrix to float4x4
     static func convertGLKMatrix4Tosimd_float4x4(_ matrix: GLKMatrix4) -> float4x4{
         return float4x4(float4(matrix.m00, matrix.m01, matrix.m02, matrix.m03),
@@ -24,10 +17,10 @@ struct MatrixHelper {
                         float4(matrix.m20, matrix.m21, matrix.m22, matrix.m23),
                         float4(matrix.m30, matrix.m31, matrix.m32, matrix.m33))
     }
-	
+    
     // degrees - 0: straight ahead. positive: to the left. negative: to the right
     static func rotateMatrixAroundY(degrees: Float, matrix: simd_float4x4) -> simd_float4x4 {
-        let radians = degreesToRadians(degrees)
+        let radians = GLKMathDegreesToRadians(degrees)
         let rotationMatrix = GLKMatrix4MakeYRotation(radians)
         return simd_mul(convertGLKMatrix4Tosimd_float4x4(rotationMatrix), matrix)
     }
@@ -35,7 +28,7 @@ struct MatrixHelper {
     // degrees - 0: horizon. positive: toward sky. negative: toward ground
     static func translateMatrixFromHorizon(degrees: Float, matrix: simd_float4x4) -> simd_float4x4 {
 
-        let radians = self.degreesToRadians(degrees)
+        let radians = GLKMathDegreesToRadians(degrees)
         let horizonMatrix = GLKMatrix4MakeXRotation(radians)
         return simd_mul(convertGLKMatrix4Tosimd_float4x4(horizonMatrix), matrix)
     }
